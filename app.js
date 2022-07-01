@@ -1,11 +1,12 @@
-import express from 'express';
-import cors from 'cors';
-import dotenv from 'dotenv';
-import { errorHandling } from './middlewares/error-hanlder.js';
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const { errorHandling } = require('./middlewares/error-hanlder');
+const { init } = require('./helpers/db');
 
-dotenv.config();
 const PORT = process.env.NODE_PORT || 3000;
 
+init();
 const app = express();
 
 app.use(express.json());
@@ -20,5 +21,3 @@ app.use(errorHandling);
 app.listen(PORT, () => {
     console.log(`Server listenig on port::${PORT}`);
 });
-
-export default app;

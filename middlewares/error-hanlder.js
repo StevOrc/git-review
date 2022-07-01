@@ -1,4 +1,4 @@
-export function errorHandling(err, req, res, next) {
+function errorHandling(err, req, res, next) {
     if (err) {
         console.log(req.status);
         res.status(400).send({ message: err.message });
@@ -6,3 +6,5 @@ export function errorHandling(err, req, res, next) {
 
     next();
 }
+
+module.exports = { errorHandling };
