@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+    mongo-mailer:
+        image: mongo:latest
+        container_name: mongo-shop
+        volumes:
+            - ./mongodb-conf/mongod.conf:/etc/mongod.conf
+            - ./mongodb-conf/initdb.d/:/docker-entrypoint-initdb.d/
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=sudo-root
+            - MONGO_INITDB_ROOT_PASSWORD=test-0102
+
+        ports:
+            - '27019:27017'
+        command: ['-f', '/etc/mongod.conf']
+
+volumes:
+    mongo: {}
